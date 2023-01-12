@@ -26,9 +26,20 @@ jobs:
       - run: npm run test -- --coverage
         env:
          CI: true
+      - name: Upload Test Covergae 
+        uses: actions/upload-artifact@v1 
+        with:
+          name: code-coverage
+          path: coverage
       - name: Project Build 
         if: github.event_name == 'push'
         run: npm run build 
+      - name: Upload Build Folder 
+        uses: actions/upload-artifact@v1 
+        with:
+          name: build
+          path: build
+      - uses: actions/download-artifact
       - name: Deploy to Stage
         if: github.ecent_name == 'push'
         run: npx surge
