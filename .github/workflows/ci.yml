@@ -52,13 +52,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
       - name: Deploy to Stage
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-        run: npx surge --project ./build --domain ${{stagingURL}}
+        # run: npx surge --project ./build --domain
         env:
           SURGE_LOGIN: ${{secrets.SURGE_LOGIN}}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN}}
       - name: Deploy to Production
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: npx surge --project ./build --domain ${{productionURL}}
+        # run: npx surge --project ./build --domain ${{productionURL}}
         env:
           SURGE_LOGIN: ${{secrets.SURGE_LOGIN}}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN}}
@@ -67,7 +67,7 @@ jobs:
         run:  npx codecov 
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN}}
-          
+
           
         
         
